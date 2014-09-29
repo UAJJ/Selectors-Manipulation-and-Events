@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My web page</title>
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+	<style>
+		body {
+			background-color: rgb(219, 219, 219);
+		}
+
+		.gal-thumb {
+			margin: 0 0 10px 0;
+			border-radius: 0 0 6px 6px;
+			background-color: #efefef;
+			height: 125px;
+			overflow: hidden;
+		}
+
+		.gal-text {
+			padding: 10px;
+			border-radius: 6px;
+			background-color: #efefef;
+		}
+
+		.active {
+			background-color: grey;
+		}
+
+		.thumb {
+			padding: 2px 2px 2px 2px;
+		}
+	</style>
+	<script>
+		$(document).ready(function() {
+
+			// When a user clicks a thumbnail image...
+			$('.thumb').click(function() {
+
+				// Remove any "selected" grey background styling
+				$('.thumb').each(function() {
+					$(this).removeClass('active');
+				});
+
+				// Make the currently clicked thumbnail image have the
+				// "selected" grey background styling
+				$(this).addClass('active');
+
+				// grab the URL of the thumbnail image that was selected
+				var thumbUrl = $('img', this).attr('src');
+				// grab the URL of the currently featured image
+				var galUrl   = $('#gal-featured-img').attr('src');
+
+				// Fade out the selected thumbnail image
+				$('img', this).fadeOut(200, function() {
+					// Fade it back in!
+					$(this).fadeIn(200);
+				});
+
+				// Fade out the featured image
+				$('#gal-featured-img').fadeOut(200, function() {
+					// Replace its 'src' attribute with the 'src'
+					// of the selected thumbnail
+					$(this).attr('src', thumbUrl);
+					// Fade it back in!
+					$(this).fadeIn(200);
+				});
+			})
+		});
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="row gal-thumb">
+			<div class="col-sm-2 thumb">
+				<a href="#" ><img class="gal-thumb-img img-responsive" src="img/pup1.jpg" /></a>
+			</div>
+			<div class="col-sm-2 thumb">
+				<a href="#" ><img class="gal-thumb-img img-responsive" src="img/pup2.jpg" /></a>
+			</div>
+			<div class="col-sm-2 thumb">
+				<a href="#" ><img class="gal-thumb-img img-responsive" src="img/pup3.jpg" /></a>
+			</div>
+			<div class="col-sm-2 thumb">
+				<a href="#" ><img class="gal-thumb-img img-responsive" src="img/pup4.jpg" /></a>
+			</div>
+			<div class="col-sm-2 thumb">
+				<a href="#" ><img class="gal-thumb-img img-responsive" src="img/pup5.jpg" /></a>
+			</div>
+			<div class="col-sm-2 thumb active">
+				<a href="#" ><img class="gal-thumb-img img-responsive" src="img/pup7.jpg" /></a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 gal-featured">
+				<img class="img-responsive" id="gal-featured-img" src="img/pup7.jpg" />
+			</div>
+			<div class="col-sm-6 gal-text">
+				<h1>Welcome to the first day of Class!</h1>
+				<p>In this example:</p>
+				<ul>
+					<li>We have small images</li>
+					<li>We have one large image</li>
+					<li>We have some text</li>
+					<li>The images will swap</li>
+					<li>The text will stay the same!</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
